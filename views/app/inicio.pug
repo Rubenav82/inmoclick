@@ -1,0 +1,51 @@
+extends ../layout/app
+
+block styles 
+    //- Cargar hoja de estilos para leaflet (mapa), esto que pegamos está en los recursos del curso
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+block contenido
+    div(class="py-5")
+        h1(class="text-center font-extrabold text-4xl") Ubicación en el Mapa
+
+        //- Div para el buscador de categorias
+        div(class="flex flex-col md:flex-row items-center py-10 gap-4")
+            h2(class="text-sm text-gray-600 font-bold") Filtrar Propiedades: 
+
+            div(class="w-full md:w-auto flex items-center gap-2")
+                label(for="categorias" class="text-sm w-24 text-gray-500 font-bold text-right") Categorías: 
+                select(id="categorias" name="categorias" class="bg-white w-full md:w-48 px-3 py-2 border border-gray-300 rounded-md shadow")
+                    option(value="") - Seleccione -
+                    each categoria in categorias 
+                        option(value=`${categoria.id}`)= categoria.nombre
+
+            //- Div para el buscador de precios
+            div(class="w-full md:w-auto flex items-center gap-2")
+                label(for="precios" class="text-sm w-24 text-gray-500 font-bold text-right") Precios: 
+                select(id="precios" name="precios" class="bg-white w-full md:w-48 px-3 py-2 border border-gray-300 rounded-md shadow")
+                    option(value="") - Seleccione -
+                    each precio in precios 
+                        option(value=`${precio.id}`)= precio.nombre
+
+        div(id="mapa-inicio" class="h-[460px] mt-5")
+
+        section(class="py-5")
+            h2(class="text-center text-4xl font-extrabold pt-10") Últimas Casas en Venta
+
+            div(class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5")
+                each propiedad in casas
+                    //- Nos llevamos el código a un template porque se repetía más abajo y optimizamos el proyecto haciéndolo más mantenible.
+                    include ../templates/card
+
+        section(class="py-5")
+            h2(class="text-center text-4xl font-extrabold pt-10") Últimos Pisos en Venta
+
+            div(class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5")
+                each propiedad in pisos
+                    include ../templates/card
+
+block scripts
+    //- leaflet es una integración a open street maps, es una alternativa gratis a googlemaps.
+    script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+    script(src="/js/mapaInicio.js") 
+    script(src="/js/descolapsarMenu.js") 

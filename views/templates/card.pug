@@ -1,0 +1,19 @@
+div(class="bg-white shadow rounded-lg")
+    img(src=`/uploads/${propiedad.imagen.split(',')[0]}` alt=`Imagen de ${propiedad.titulo}` title =`Imagen de ${propiedad.titulo}` class="object-cover rounded-t h-60 w-full")
+    div(class="p-5 space-y-2")
+        h3(class="text-xl font-bold text-center")= propiedad.titulo
+
+        p(class="text-sm text-gray-600") Metros Cuadrados: 
+            span(class="text-gray-800 font-bold")= propiedad.metros
+
+        if vivienda
+            p(class="text-sm text-gray-600") Habitaciones: 
+                span(class="text-gray-800 font-bold")= propiedad.habitaciones
+            p(class="text-sm text-gray-600") Baños: 
+                span(class="text-gray-800 font-bold")= propiedad.wc
+            p(class="text-sm text-gray-600") Estacionamiento: 
+                span(class="text-gray-800 font-bold")= propiedad.estacionamiento == 0 ? 'Sin estacionamiento' : propiedad.estacionamiento
+
+        p(class="text-sm text-gray-600") Precio: 
+            span(class="text-gray-800 font-bold")= propiedad.precio.nombre
+        a(href=`/propiedad/${propiedad.id}` class="bg-indigo-600 block p-2 text-center font-bold rounded shadow hover:bg-indigo-700" style="color: white") Ver Propiedad

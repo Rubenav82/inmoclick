@@ -1,0 +1,28 @@
+extends ../layout/admin
+
+block styles 
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css")
+    //- Le pasamos el csrfToken en el head, ya que con Dropzone no lo lee al pasarlo en el input después del form con clase dropzone
+    meta(name="csrf-token" content= csrfToken)
+
+block contenido
+    //- El div directamente lo omite, lo quita, porque nada, es igual a div para pug
+    .py-2
+        h1.text-4xl.my-10.font-extrabold.text-center Inmo
+            span.font-normal Click
+        h2.text-center.text-2xl.font-extrabold= pagina
+
+        //- Hay que agregar dropzone, lo instalamos con la terminal.
+
+        div(class="bg-white shadow py-8 px-4 rounded mx-auto max-w-4xl my-10 md:px-10")
+            //- Hay que añadir al formulario la clase de dropzone para que sepa que es ese tipo de objeto, y el id para que agregarImagen.js identifique el objeto DropZone al que le estamos modificando las opciones. En el action le redirigimos a la misma página pasándole el id de la propiedad que recibimos en el controller como parámetro.
+            form(id="imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" method="POST" action=`/propiedades/agregar-imagen/${propiedad.id}`)
+                //- Campo oculto para el csrfToken
+                input(type="hidden" name="_csrf" value= csrfToken)
+                
+            button(id="publicar" class="mt-5 w-full py-3 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-bold uppercase cursor-pointer" type="button") Publicar Propiedad
+
+block scripts
+
+    //- Ya está apuntando a public
+    script(src="/js/agregarImagen.js")

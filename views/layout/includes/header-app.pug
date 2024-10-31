@@ -1,0 +1,63 @@
+header(class="bg-indigo-600 p-4")
+    .container.mx-auto.flex.justify-between.items-center
+        a(href="/") 
+            img(src="/img/icon.png", alt="" class="inline w-12")
+            h1.text-2xl.text-white.font-extrabold.inline Inmo
+                span.font-normal Click
+
+        
+        if usuario
+            nav(class="my-5 text-sm flex flex-col items-center md:flex-row font-bold text-white gap-3")
+                div(class="flex justify-between gap-3")
+                    a(href="/mis-propiedades") Mis Propiedades
+
+                form(action="/auth/cerrar-sesion" method="post") 
+                    input(type="hidden" name="_csrf" value= csrfToken)
+                    input(type="submit" class="bg-indigo-800 py-2 px-5 md:px-10 rounded-lg cursor-pointer" value="Cerrar Sesión")
+        else 
+            nav(class="my-5 text-sm flex flex-row items-center font-bold text-white gap-3")
+                a(href="/auth/registro") Crear Cuenta
+                a(href="/auth/login") Iniciar Sesión
+
+// En tamaño de pantalla grande mostramos el menú de forma normal
+div(class="bg-indigo-700 py-5 hidden lg:block")
+    div(class="container mx-auto flex justify-between items-center px-10")
+        nav(class="flex gap-4")
+            a(href="/categorias/1" class="text-sm font-bold uppercase text-white") Pisos
+            a(href="/categorias/2" class="text-sm font-bold uppercase text-white") Apartamentos
+            a(href="/categorias/3" class="text-sm font-bold uppercase text-white") Casas
+            a(href="/categorias/4" class="text-sm font-bold uppercase text-white") Locales
+            a(href="/categorias/5" class="text-sm font-bold uppercase text-white") Terrenos
+
+        form(action="/buscador", method="post" class="flex gap-3 items-center") 
+            input(type="hidden" name="_csrf" value= csrfToken)
+            label(for="termino" class="text-sm font-bold text-white") Búsqueda:
+            input(type="text", name="termino" id="termino" placeholder="Buscar Propiedades" class="p-2 rounded-lg shadow text-sm")
+            input(type="submit", value="Buscar" class="bg-indigo-900 hover:bg-indigo-400 rounded-lg text-white font-bold p-2 cursor-pointer text-sm shadow")
+
+// En tamaño de pantalla pequeño o mediano mostramos menú de hamburguesa
+div(class="bg-indigo-700 py-5 lg:hidden")
+    div(class="container mx-auto flex justify-between items-center px-10")
+        div(class="flex flex-wrap items-center")
+            button(class="outline-none mobile-menu-button")
+                svg(class="w-8 h-8 text-gray-500" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="white")
+                    path(d="M4 6h16M4 12h16M4 18h16")
+
+        form(action="/buscador", method="post" class="flex gap-3 items-center") 
+            input(type="hidden" name="_csrf" value= csrfToken)
+            label(for="termino" class="text-sm font-bold text-white hidden md:block") Búsqueda:
+            input(type="text", name="termino" id="termino" placeholder="Buscar Propiedades" class="p-2 rounded-lg shadow text-sm w-40")
+            input(type="submit", value="Buscar" class="bg-indigo-900 hover:bg-indigo-400 rounded-lg text-white font-bold p-2 cursor-pointer text-sm shadow")
+
+    nav(class="hidden mobile-menu w-full")
+        ul(class="font-medium flex flex-col p-4 mt-4 border border-indigo-100 rounded-lg bg-indigo-200  dark:bg-gray-800  dark:border-gray-700 mx-2")
+            li
+                a(href="/categorias/1" class="block p-2 rounded text-sm font-bold uppercase text-black hover:bg-indigo-600 hover:text-white") Pisos
+            li
+                a(href="/categorias/2" class="block p-2 rounded text-sm font-bold uppercase text-black hover:bg-indigo-600 hover:text-white") Apartamentos
+            li 
+                a(href="/categorias/3" class="block p-2 rounded text-sm font-bold uppercase text-black hover:bg-indigo-600 hover:text-white") Casas
+            li
+                a(href="/categorias/4" class="block p-2 rounded text-sm font-bold uppercase text-black hover:bg-indigo-600 hover:text-white") Locales
+            li
+                a(href="/categorias/5" class="block p-2 rounded text-sm font-bold uppercase text-black hover:bg-indigo-600 hover:text-white") Terrenos
