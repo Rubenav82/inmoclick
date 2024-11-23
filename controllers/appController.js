@@ -34,6 +34,9 @@ const inicio = async (req, res) => {
         })
     ]);
 
+    //Identificamos si es vivienda o no. En este caso como lo único que vamos a pasar son pisos y casas, todas son viviendas.
+    let vivienda = true;
+
     //Enviamos el usuario identificado del middleware identificarUsuario.js para personalizar el menú de navegación 
 
     res.render('./app/inicio', {
@@ -43,7 +46,9 @@ const inicio = async (req, res) => {
         pisos,
         casas,
         csrfToken: req.csrfToken(),
-        usuario: req.usuario
+        usuario: req.usuario,
+        vivienda,
+        formatearFecha
     });
 }
 
