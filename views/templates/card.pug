@@ -3,6 +3,8 @@ div(class="bg-white shadow rounded-lg")
     div(class="p-5 space-y-2")
         h3(class="text-xl font-bold text-center")= propiedad.titulo
 
+        p(class="text-sm text-gray-600") Fecha de publicación: 
+            span(class="text-gray-800 font-bold")= formatearFecha(propiedad.createdAt)
         p(class="text-sm text-gray-600") Metros Cuadrados: 
             span(class="text-gray-800 font-bold")= propiedad.metros
 

@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import { Precio, Categoria, Propiedad } from '../models/index.js';
+import { formatearFecha } from '../helpers/index.js';
 
 // Página de inicio
 const inicio = async (req, res) => {
@@ -63,6 +64,7 @@ const categoria = async (req, res) => {
             categoriaId: id,
             publicado: 1
         },
+        order: [['createdAt', 'DESC']],
         include: [
             { model: Precio, as: 'precio' }
         ]
@@ -77,7 +79,8 @@ const categoria = async (req, res) => {
         propiedades,
         csrfToken: req.csrfToken(),
         usuario: req.usuario,
-        vivienda
+        vivienda,
+        formatearFecha
     })
 }
 
