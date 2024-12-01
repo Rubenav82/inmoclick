@@ -18,7 +18,7 @@ block contenido
 
         div(class="bg-white shadow py-8 px-4 rounded mx-auto max-w-4xl my-10 md:px-10")
             //- Hay que añadir al formulario la clase de dropzone para que sepa que es ese tipo de objeto, y el id para que agregarImagen.js identifique el objeto DropZone al que le estamos modificando las opciones. En el action le redirigimos a la misma página pasándole el id de la propiedad que recibimos en el controller como parámetro.
-            form(id="imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" method="POST" action=`/propiedades/agregar-imagen/${propiedad.id}`)
+            form(id="imagen" name="imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" method="POST" action=`/propiedades/agregar-imagen/${propiedad.id}`)
                 //- Campo oculto para el csrfToken
                 input(type="hidden" name="_csrf" value= csrfToken)
                 

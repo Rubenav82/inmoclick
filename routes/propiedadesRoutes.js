@@ -23,7 +23,7 @@ router.get('/propiedades/agregar-imagen/:id', protegerRuta, agregarImagen); //Ro
 
 router.post('/propiedades/agregar-imagen/:id',
     protegerRuta,
-    upload.any(), //En este caso single porque solo subimos una imagen. Parámetro imagen pasado en agregarImagen.js
+    upload.any(), //En este caso any porque subimos más de una imagen, si solo subiéramos una sería ".single". Parámetro imagen pasado en agregarImagen.js
     almacenarImagen
 );
 

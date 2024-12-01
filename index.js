@@ -24,7 +24,7 @@ app.use(session({
     resave: true, //Fuerza que la sesión se guarde nuevamente en el almacén de sesiones incluso si esta no se modificó durante la solicitud.
     saveUninitialized: false, //Fuerza que una sesión que no está inicializada se guarde en la tienda. Una sesión no está inicializada cuando es nueva pero no se ha modificado. Elegir falso es útil para implementar sesiones de inicio de sesión.
     cookie: {
-        // maxAge: 1800000 //La cookie expirará en media hora
+        // maxAge: 1800000 //La cookie expirará en media hora. Cuando el valor maxAge no se establece en la configuración de la cookie, la cookie de sesión se convierte en una cookie de sesión de navegador. Esto significa que la cookie solo existirá mientras la ventana del navegador esté abierta. Una vez que el usuario cierra el navegador, la cookie se eliminará automáticamente.
     }
 }))
 

@@ -21,12 +21,17 @@ Dropzone.options.imagen = { // El punto imagen es para indicarle que objeto Drop
         const dropzone = this;
         const bntPublicar = document.querySelector('#publicar'); //Guardamos en una variable el botón.
 
+        console.log('Inicializando Dropzone...'); 
+        console.log('Botón Publicar encontrado:');
+
         bntPublicar.addEventListener('click', function () {//Capturamos el evento.
+            console.log('Botón Publicar clickeado');
             dropzone.processQueue();//Método para procesar los archivos.
         });
 
         dropzone.on('queuecomplete', function(){//Cuando se complete la carga...
             if(dropzone.getActiveFiles().length == 0){//Si no quedan archivos por procesar
+                console.log('Todos los archivos procesados');
                 window.location.href = '/mis-propiedades'; //Redirigimos a mis propiedades.
             }
         });
