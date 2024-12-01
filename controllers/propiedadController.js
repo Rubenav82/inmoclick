@@ -358,11 +358,12 @@ const eliminar = async (req, res) => {
 
     const imagenes = propiedad.imagen.split(',');
     console.log(imagenes);
-    imagenes.forEach(async imagen => {
-        //Eliminar la imagen asociada con la funcionalidad unlink de node
-        await unlink(`./public/uploads/${imagen}`);
-    });
-
+    if (imagenes) {
+        imagenes.forEach(async imagen => {
+            //Eliminar la imagen asociada con la funcionalidad unlink de node
+            await unlink(`./public/uploads/${imagen}`);
+        });
+    }
 
     //Eliminar la propiedad
     await propiedad.destroy();

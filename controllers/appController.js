@@ -54,17 +54,29 @@ const inicio = async (req, res) => {
 
 // Categorías
 const categoria = async (req, res) => {
+    // Leer QueryString, para leer de la url la página que se está visualizando de la tabla paginada. En este caso no se pasa como parámetro en el routing, si no como query en la url
+    const { pagina: paginaActual } = req.query; //Leemos el parámetro con query y le renombramos a paginaActual para no confundir con el parámetro pagina que pasamos en el render de la vista.
+
+    // Límites y Offset para el paginador
+    const limit = 6; //Límite de registros a mostrar en cada página
+    const offset = ((paginaActual * limit) - limit); //Para saber el número de registros que nos tenemos que saltar
+
     const { id } = req.params; //Extraemos el id de la categoría que se está consultando y que se pasa como parámetro
 
     // Verificar que la categoría existe
     const categoria = await Categoria.findByPk(id);
 
+    console.log("El id de la categoría es: " + id)
+
     if (!categoria) {
         return res.redirect('/404'); //Si la categoría no existe retornamos a página 404
     }
 
+
     // Consultar las propiedades de esa categoría
     const propiedades = await Propiedad.findAll({
+        limit,
+        offset,
         where: {
             categoriaId: id,
             publicado: 1
@@ -74,6 +86,13 @@ const categoria = async (req, res) => {
             { model: Precio, as: 'precio' }
         ]
     });
+
+    const total = await Propiedad.count({
+        where: {
+            categoriaId: id,
+            publicado: 1
+        }
+    })
 
     //Identificamos si es vivienda o no
     let vivienda;
@@ -85,6 +104,12 @@ const categoria = async (req, res) => {
         csrfToken: req.csrfToken(),
         usuario: req.usuario,
         vivienda,
+        paginas: Math.ceil(total / limit), //Para devolver el número de botones necesario redondeado hacia arriba.
+        paginaActual: Number(paginaActual), //Le pasamos también la página actual para poder resaltarla en la paginación convertida a número.
+        total, //Pasamos el total de registros,
+        limit,
+        offset,
+        id,
         formatearFecha
     })
 }
@@ -124,7 +149,8 @@ const buscador = async (req, res) => {
         pagina: 'Resultado de la Búsqueda',
         propiedades,
         csrfToken: req.csrfToken(),
-        usuario: req.usuario
+        usuario: req.usuario,
+        formatearFecha
     })
 }
 

@@ -9,6 +9,26 @@ block contenido
                 div(class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5")
                     each propiedad in propiedades
                         include ../templates/card
+
+                //- Creamos el paginador de la tabla
+                div(class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6")
+                    //- Para tamaño de pantalla móvil
+                    div(class="flex flex-1 justify-between sm:hidden")
+                        a(href=`/categorias/${id}?pagina=${paginaActual - 1}` class=`${paginaActual == "1" ? 'pointer-events-none font-medium' : 'font-bold'} relative items-center px-4 py-2 border border-gray-300 text-sm rounded-md text-gray-700 bg-white hover:bg-gray-50`) Anterior
+                        
+                        a(href=`/categorias/${id}?pagina=${paginaActual + 1}` class=`${paginaActual == paginas ? 'pointer-events-none font-medium' : 'font-bold'} relative items-center px-4 py-2 border border-gray-300 text-sm rounded-md text-gray-700 bg-white hover:bg-gray-50`) Siguiente
+                    //- Para tamaños de pantalla más grandes
+                    div(class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between")
+                        p(class="text-sm text-gray-700 gap-2") Mostrando 
+                            span(class="font-medium") #{offset + 1} - 
+                            span(class="font-medium") #{total < limit * paginaActual ? total : limit * paginaActual} de  
+                            span(class="font-medium") #{total} resultados.
+                    //- Para tamaños de pantalla más grandes
+                    div(class="hidden sm:block")
+                        nav(class="relative z-0 inline-flex rounded-md shadow-md")
+                            - let n=1;
+                                while n <= paginas
+                                    a(href=`/categorias/${id}?pagina=${n}` class=`${paginaActual == n ? 'bg-indigo-50 border-indigo-500 text-indigo-600 font-bold' : 'font-medium bg-white border-gray-300 text-gray-500 hover:bg-gray-50'} relative inline-flex items-center px-4 py-2 border text-sm`) #{n++}
             else 
                 p(class="text-center text-gray-800 text-sm py-10") No hay resultados
 

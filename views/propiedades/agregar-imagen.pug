@@ -8,8 +8,10 @@ block styles
 block contenido
     //- El div directamente lo omite, lo quita, porque nada, es igual a div para pug
     .py-2
-        h1.text-4xl.my-10.font-extrabold.text-center Inmo
-            span.font-normal Click
+        div(class="container mx-auto flex items-center justify-center")
+            img(src="/img/icon.png", alt="" width="50rem" class="inline")
+            h1.text-4xl.my-10.font-extrabold.text-center Inmo
+                span.font-normal Click
         h2.text-center.text-2xl.font-extrabold= pagina
 
         //- Hay que agregar dropzone, lo instalamos con la terminal.

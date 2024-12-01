@@ -62,7 +62,7 @@ const emailOlvidePassword = async (datos) => {
               <h1 style="font-size:1.5rem; line-height:2rem; color:white; font-weight:800; text-align:left">Inmo<span style="font-weight:400">Click</span></h1>
           </div>
             <div style="background-color: #f7fbfb; padding:1rem; width:100%; box-sizing:border-box; margin-left:auto; margin-right:auto">
-            <p style="margin-top:20px;">Hola ${datos.nombre}, has solicitado reestablecer tu password en InmoClick/p>
+            <p style="margin-top:20px;">Hola ${datos.nombre}, has solicitado reestablecer tu password en InmoClick</p>
 
             <p>Sigue el siguiente enlace para generar un password nuevo:
             <a href="${process.env.BACKEND_URL}/auth/olvide-password/${datos.token}" style="font-weight:bold">Restablecer Password</a>
