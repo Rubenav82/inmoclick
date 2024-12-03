@@ -13,7 +13,7 @@
         const token = document.querySelector('meta[name="csrfToken"]').getAttribute('content');
 
         try {
-            const url = `/propiedades/${id}`; // Url del api
+            const url = `/propiedades/${id}`; // Url de la api
             // Enviamos el csrfToken en el request de la petición a la api
             const respuesta = await fetch(url, {
                 method: 'PUT',
@@ -24,7 +24,7 @@
 
             //Leemos el resultado del json de la API
             const { resultado } = await respuesta.json();
-            //Pero en el navegador hay que ir recargando para ver los cambios, no lo hace en tiempo real.
+            
             if(resultado){ // Si todo salió bien y resultado es true
                 if(evento.target.classList.contains('bg-yellow-100')){//Si el botón tiene alguna clase del amarillo le convertimos al verde y viceversa.
                     evento.target.classList.remove('bg-yellow-100', 'text-red-800');

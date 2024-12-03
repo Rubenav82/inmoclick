@@ -365,6 +365,13 @@ const eliminar = async (req, res) => {
         });
     }
 
+    //Consultamos los mensajes asociados a la propiedad
+    const mensajes = await Mensaje.findAll({ where: { propiedadId: propiedad.id } });
+
+    if (mensajes) {//Si tiene mensajes asociados se los eliminamos previamente
+        Mensaje.destroy({ where: { propiedadId: propiedad.id } });
+    }
+
     //Eliminar la propiedad
     await propiedad.destroy();
 

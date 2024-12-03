@@ -27,13 +27,14 @@ Dropzone.options.imagen = { // El punto imagen es para indicarle que objeto Drop
         bntPublicar.addEventListener('click', function () {//Capturamos el evento.
             console.log('Botón Publicar clickeado');
             dropzone.processQueue();//Método para procesar los archivos.
+
+            dropzone.on('queuecomplete', function(){//Cuando se complete la carga...
+                if(dropzone.getActiveFiles().length == 0){//Si no quedan archivos por procesar
+                    console.log('Todos los archivos procesados');
+                    window.location.href = '/mis-propiedades'; //Redirigimos a mis propiedades.
+                }
+            });
         });
 
-        dropzone.on('queuecomplete', function(){//Cuando se complete la carga...
-            if(dropzone.getActiveFiles().length == 0){//Si no quedan archivos por procesar
-                console.log('Todos los archivos procesados');
-                window.location.href = '/mis-propiedades'; //Redirigimos a mis propiedades.
-            }
-        });
     }
 }
