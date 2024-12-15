@@ -4,7 +4,7 @@ import Usuario from '../models/Usuario.js';
 import { generarJWT, generarId } from '../helpers/tokens.js';
 import { emailRegistro, emailOlvidePassword } from '../helpers/emails.js';
 
-const formularioLogin = (req, res) => { //Cuando se llama a esta función se manda como respuesta un JSON donde los atributos necesarios
+const formularioLogin = (req, res) => { //Cuando se llama a esta función se manda como respuesta un JSON con los atributos necesarios
     res.render('auth/login', {
         pagina: 'Iniciar Sesión',
         csrfToken: req.csrfToken() //Con esta variable le pasamos el token público para validarse con el privado y evitar CSRF. Todos los formularios lo van a tener que tener y se lo tendremos que enviar.
@@ -64,12 +64,6 @@ const autenticar = async (req, res) => { //Cuando se llama a esta función se re
     req.session.user = token;
     
     res.redirect('/mis-propiedades');
-    // // Almacenar el token en una cookie llamada _token. HEMOS PASADO A UTILIZAR SESIONES
-    // return res.cookie('_token', token, {
-    //     httpOnly: true //Esto lo que va a hacer es evitar los ataque cross site
-    //     //secure: true,
-    //     //sameSite: true //Solo permite las cookies en conexiones seguras para el despliegue a producción si el hosting nos permite conexiones seguras. De momento lo dejamos deshabilitado.
-    // }).redirect('/mis-propiedades'); //Después de almacenar el token en la cookie, redirigmos a mis-propiedades.
 }
 
 const cerrarSesion = async (req, res) => {

@@ -30,11 +30,11 @@ block contenido
 
                     div
                         label.block.text-sm.uppercase.text-gray-500.mb-3.font-bold(for="titulo") Título de Anuncio
-                        input#titulo.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Título Propiedad, ej. Casa en la Playa" type="text" name="titulo" value= datos.titulo ? datos.titulo : '')
+                        input#titulo.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Título Propiedad, ej. Casa en la Playa" type="text" name="titulo" required value= datos.titulo ? datos.titulo : '')
 
                     div
                         label(class="block text-sm uppercase text-gray-500 mb-3 font-bold" for="descripcion") Descripción
-                        textarea#descripcion.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Descripción de la propiedad" name="descripcion")= datos.descripcion ? datos.descripcion : ''
+                        textarea#descripcion.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Descripción de la propiedad" name="descripcion" required)= datos.descripcion ? datos.descripcion : ''
 
                     //- Media query para que estén en la misma fila los selectores con gap de 4 si la pantalla es grande. Si la pantalla es pequeña se mostrarán con ancho completo (por defecto) con un espacio entre ellos de 5
                     div(class="md:flex md:gap-4 space-y-5 md:space-y-0")

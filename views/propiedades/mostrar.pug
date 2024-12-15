@@ -46,6 +46,8 @@ block contenido
                             span(class="text-gray-800 block font-normal text-sm text-justify")= propiedad.descripcion
 
                     div(class="grid grid-cols-1 md:grid-cols-3 gap-4")
+                        p(class="text-gray-600 font-bold text-sm") Fecha publicación 
+                            span(class="text-gray-800 block")= formatearFecha(propiedad.createdAt)
                         p(class="text-gray-600 font-bold text-sm") Metros cuadrados
                             span(class="text-gray-800 block text-lg")= propiedad.metros
 
@@ -95,7 +97,7 @@ block contenido
 
                                 div(class="space-y-2")
                                     label(for="mensaje") Mensaje: 
-                                    textarea(name="mensaje" id="mensaje" placeholder="Escribe tu mensaje aquí..." class="w-full p-2 border border-gray-300 rounded-lg shadow")
+                                    textarea(name="mensaje" id="mensaje" placeholder="Escribe tu mensaje aquí..." class="w-full p-2 border border-gray-300 rounded-lg shadow" required)
                                     input(type="submit", value="Enviar Mensaje" class="bg-indigo-600 text-white font-bold text-sm w-full p-2 cursor-pointer")
                         else 
                             div(class="flex justify-center gap-2")
