@@ -505,7 +505,8 @@ const enviarMensaje = async (req, res) => {
         csrfToken: req.csrfToken(),
         usuario: req.usuario, //Le pasamos a la vista el usuario identificado en el middleware para comprobar si la persona que está accediendo tiene usuari y está logada.
         esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioId), //Ponemos la interrogación para que el id del request si existe el usuarios en el request y si no, que no dé error. Si el id del usuario conectado es diferente al que publicó la propiedad, devolverá false, si es el mismo true.
-        enviado: true
+        enviado: true,
+        formatearFecha
     });
 }
 
