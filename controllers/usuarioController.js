@@ -168,7 +168,7 @@ const confirmar = async (req, res) => {
 
 const formularioOlvidePassword = (req, res) => {
     res.render('auth/olvide-password', {
-        pagina: 'Recupera tu acceso a Bienes Raices',
+        pagina: 'Recupera tu acceso a InmoClick',
         csrfToken: req.csrfToken() //Con esta variable le pasamos el token público para validarse con el privado y evitar CSRF
     })
 }
@@ -181,7 +181,7 @@ const resetPassword = async (req, res) => {
     if (!resultado.isEmpty()) {
         // Si hay errores enviamos de nuevo a la página de registro pero enviamos el array con los errores.
         return res.render('auth/olvide-password', {
-            pagina: 'Recupera tu acceso a Bienes Raices',
+            pagina: 'Recupera tu acceso a InmoClick',
             csrfToken: req.csrfToken(), //Con esta variable le pasamos el token público para validarse con el privado y evitar CSRF
             errores: resultado.array()
         })
@@ -192,7 +192,7 @@ const resetPassword = async (req, res) => {
     // Si el usuario no existe
     if (!usuario) {
         return res.render('auth/olvide-password', {
-            pagina: 'Recupera tu acceso a Bienes Raices',
+            pagina: 'Recupera tu acceso a InmoClick',
             csrfToken: req.csrfToken(), //Con esta variable le pasamos el token público para validarse con el privado y evitar CSRF
             errores: [{ msg: 'El email no pertenece a ningún usuario.' }]
         })
