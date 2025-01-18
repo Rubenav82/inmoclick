@@ -316,7 +316,7 @@ const guardarCambios = async (req, res) => {
     //Si las validaciones del formulario y del endpoint han ido bien, reescribimos el objeto y guardamos
     try {
         //Guardamos las respuestas de los campos del body.
-        const { titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio: precioId, categoria: categoriaId } = req.body;
+        const { titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio: precioId, categoria: categoriaId, metros } = req.body;
         //Seteamos la propiedad
         propiedad.set({
             titulo,
@@ -328,7 +328,8 @@ const guardarCambios = async (req, res) => {
             lat,
             lng,
             precioId,
-            categoriaId
+            categoriaId,
+            metros
         });
         //Guardamos
         await propiedad.save();
@@ -476,7 +477,8 @@ const enviarMensaje = async (req, res) => {
             csrfToken: req.csrfToken(),
             usuario: req.usuario, //Le pasamos a la vista el usuario identificado en el middleware para comprobar si la persona que está accediendo tiene usuari y está logada.
             esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioId), //Ponemos la interrogación para que el id del request si existe el usuarios en el request y si no, que no dé error. Si el id del usuario conectado es diferente al que publicó la propiedad, devolverá false, si es el mismo true.
-            errores: resultado.array() //Le pasamos los errores
+            errores: resultado.array(), //Le pasamos los errores
+            formatearFecha
         })
     }
 
