@@ -6,7 +6,7 @@ const esVendedor = (usuarioId, propiedadUsuarioId) => {
 const formatearFecha = fecha => {
     // const fechaFormateada = new Date(fecha).toISOString().replace("T", " ").slice(0,-5); //Con esto tenemos un formato fecha
     let fechaOriginal = new Date(fecha);
-    fechaOriginal.setHours(fechaOriginal.getHours()); //Le sumo 1 horas a la fecha original para que coincida con la fecha de creación.
+    fechaOriginal.setHours(fechaOriginal.getHours()+1); //Le sumo 1 horas a la fecha original para que coincida con la fecha de creación.
 
     const opciones = {//opciones para formatear la fecha
         weekday: 'long',
