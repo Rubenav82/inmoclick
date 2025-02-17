@@ -364,7 +364,7 @@ const eliminar = async (req, res) => {
     if (imagenes != '') {
         imagenes.forEach(async imagen => {
             // Eliminar la imagen asociada con la funcionalidad unlink de node, comprobando primero si esta existe.
-            if(await fs.stat(`./public/uploads/${imagen}`)){
+            if(await fs.access(`./public/uploads/${imagen}`)){
                 await fs.unlink(`./public/uploads/${imagen}`);
             }
             //Eliminar la imagen asociada con la funcionalidad unlink de node
