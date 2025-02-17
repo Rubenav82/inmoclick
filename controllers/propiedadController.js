@@ -3,6 +3,7 @@ import { validationResult } from 'express-validator'; //Importamos la función v
 import { Precio, Categoria, Propiedad, Mensaje, Usuario } from '../models/index.js';
 import { esVendedor, formatearFecha } from '../helpers/index.js'; //Importamos helper para comprobar si el usuario que ve una propiedad es el que la publicó, formatear la fecha
 import { emailContacto } from '../helpers/emails.js'; //Para enviar el email cada vez que alguien quiere contactar con el vendedor
+import { promises as fs } from 'fs';
 
 
 // Función que renderiza a la vista admin de propiedades
@@ -359,10 +360,10 @@ const eliminar = async (req, res) => {
 
     const imagenes = propiedad.imagen.split(',');
     console.log(imagenes);
-    const fs = require('fs').promises;
+
     if (imagenes != '') {
         imagenes.forEach(async imagen => {
-            // Eliminar la imagen asociada con la funcionalidad unlink de node, comprobando primero si esta ExclusionConstraintError.
+            // Eliminar la imagen asociada con la funcionalidad unlink de node, comprobando primero si esta existe.
             if(await fs.stat(`./public/uploads/${imagen}`)){
                 await fs.unlink(`./public/uploads/${imagen}`);
             }
