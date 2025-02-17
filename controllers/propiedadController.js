@@ -359,10 +359,15 @@ const eliminar = async (req, res) => {
 
     const imagenes = propiedad.imagen.split(',');
     console.log(imagenes);
+    const fs = require('fs').promises;
     if (imagenes != '') {
         imagenes.forEach(async imagen => {
+            // Eliminar la imagen asociada con la funcionalidad unlink de node, comprobando primero si esta ExclusionConstraintError.
+            if(await fs.stat(`./public/uploads/${imagen}`)){
+                await fs.unlink(`./public/uploads/${imagen}`);
+            }
             //Eliminar la imagen asociada con la funcionalidad unlink de node
-            await unlink(`./public/uploads/${imagen}`);
+            // await unlink(`./public/uploads/${imagen}`);
         });
     }
 
